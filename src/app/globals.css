@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * HireFlow design tokens: orange and black (TinyFish palette).
+ * Light: white surfaces, near-black text, a darkened orange primary (bright orange #FF6A00 is only 2.9:1 on white,
+ * so it is kept for non-text brand uses: --brand, charts). Dark: near-black surfaces with the bright orange primary.
+ * Status colours are shades of orange and grey and are always paired with an icon and a text label.
+ * The one exception is --danger, a single muted red used only for destructive actions (Delete account).
+ * Every text pair must reach WCAG AA (4.5:1): run scripts/check_contrast.py after changing a token.
+ */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 8%;
+    --primary: 24 100% 37%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 24 100% 97%;
+    --secondary-foreground: 20 14% 14%;
+    --muted: 24 40% 96%;
+    --muted-foreground: 20 8% 36%;
+    --accent: 24 95% 92%;
+    --accent-foreground: 24 100% 22%;
+    --border: 24 15% 88%;
+    --line: 24 10% 78%;
+    --input: 24 12% 84%;
+    --ring: 24 100% 37%;
+    --radius: 0.75rem;
+    /* Status: shades of orange and grey, always with an icon and a label */
+    --success: 26 90% 28%;
+    --success-foreground: 0 0% 100%;
+    --info: 36 100% 29%;
+    --info-foreground: 0 0% 100%;
+    --warning: 0 0% 32%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 0% 12%;
+    --destructive-foreground: 0 0% 100%;
+    /* Destructive actions only (Delete account) */
+    --danger: 352 75% 40%;
+    --danger-foreground: 0 0% 100%;
+    /* Brand mark colours: the same in light and dark mode */
+    --brand: 25 100% 50%;
+    --brand-foreground: 0 0% 7%;
+    --brand-soft: 28 100% 85%;
+    /* Scrim behind dialogs and sheets (both modes) */
+    --overlay: 20 14% 4%;
+    /* Charts */
+    --series-1: #1c1917;
+    --series-2: #e65c00;
+    --series-3: #fdba74;
+    --chart-grid: #e7e5e4;
+    --chart-axis: #d6d3d1;
+    --chart-muted: #78716c;
+  }
+  .dark {
+    --background: 20 8% 6%;
+    --foreground: 0 0% 98%;
+    --card: 20 8% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 20 8% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 25 100% 50%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 20 8% 14%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 20 8% 12%;
+    --muted-foreground: 24 8% 72%;
+    --accent: 24 40% 16%;
+    --accent-foreground: 0 0% 98%;
+    --border: 20 6% 20%;
+    --line: 20 6% 32%;
+    --input: 20 6% 24%;
+    --ring: 25 100% 50%;
+    --success: 32 100% 70%;
+    --success-foreground: 0 0% 5%;
+    --info: 40 100% 65%;
+    --info-foreground: 0 0% 5%;
+    --warning: 0 0% 78%;
+    --warning-foreground: 0 0% 5%;
+    --destructive: 0 0% 92%;
+    --destructive-foreground: 0 0% 5%;
+    --danger: 352 90% 72%;
+    --danger-foreground: 0 0% 5%;
+    --series-1: #fed7aa;
+    --series-2: #ff6a00;
+    --series-3: #c2410c;
+    --chart-grid: #292524;
+    --chart-axis: #44403c;
+    --chart-muted: #a8a29e;
+  }
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer components {
+  .label-caps {
+    @apply text-[11px] font-medium uppercase tracking-label;
+  }
+  .display {
+    @apply font-display font-extrabold leading-[1.05] tracking-tight;
+  }
+  /* Brush strokes behind a headline (see the landing hero). */
+  .brush {
+    position: relative;
+    isolation: isolate;
+  }
+  .brush::before,
+  .brush::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: hsl(var(--primary));
+    transform: skewY(-9deg) rotate(-8deg);
+  }
+  .brush::before {
+    left: -3%;
+    right: 2%;
+    top: 36%;
+    height: 24%;
+  }
+  .brush::after {
+    left: -12%;
+    right: 34%;
+    top: 84%;
+    height: 21%;
+  }
+  .tag-pill {
+    @apply inline-flex items-center rounded-full border border-foreground/70 bg-background px-4 py-1.5 text-sm text-foreground;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .prose-pre {
+    @apply whitespace-pre-wrap break-words text-sm leading-relaxed;
+  }
+  .grid-lines {
+    /* 1px separators between grid cells: give the grid a line-colored background and gap-px */
+    @apply gap-px overflow-hidden rounded-xl bg-border;
+  }
+  .grid-lines > * {
+    @apply bg-card;
+  }
+}
