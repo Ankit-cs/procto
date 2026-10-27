@@ -4,12 +4,12 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3
 /** Bump with every change to the icons in public/ (and the ?v= in manifest.webmanifest): it busts browsers' favicon caches. */
 export const ICON_VERSION = "4";
 
-export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/saksham-eng560/HireFlow";
+export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/Ankit-cs/procto";
 /** The one-time Google OAuth client setup behind "Continue with Google". */
 export const GOOGLE_SETUP_URL = `${GITHUB_URL}/blob/main/docs/USER_GUIDE.md#sign-in-with-google`;
 export const AUTHOR = {
-  name: process.env.NEXT_PUBLIC_AUTHOR_NAME || "saksham-eng560",
-  url: process.env.NEXT_PUBLIC_AUTHOR_URL || "https://github.com/saksham-eng560",
+  name: process.env.NEXT_PUBLIC_AUTHOR_NAME || "Ankit-cs",
+  url: process.env.NEXT_PUBLIC_AUTHOR_URL || "https://github.com/Ankit-cs",
 };
 /** The 60-second walkthrough: a YouTube or Loom link, or an .mp4/.webm file. Empty until one is recorded. */
 export const DEMO_VIDEO_URL = process.env.NEXT_PUBLIC_DEMO_VIDEO_URL || "";
